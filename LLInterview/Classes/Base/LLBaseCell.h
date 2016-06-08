@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "LLObjects.h"
 
-
 #define kScreenWidth        [[UIScreen mainScreen] bounds].size.width
 
 typedef void(^CellAction)(NSInteger index, id obj);

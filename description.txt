@@ -1,0 +1,9 @@
+说明文档:
+
+1. 几个基类用于处理通用性的处理
+2. Model为数据模型，包括了数据定义以及数据的基本处理
+3. View为自定义视图，包括视图中控件的布局和逻辑
+4. Controller为每个具体界面控制器，包含了业务的逻辑处理以及数据请求。
+5. 基于AFNetworking的网络请求封装，BaseNetworkRequest，BaseNetworkResult用于做统一的处理。
+6. Objects类用于存放所有Model类，统一Import。
+7. NetworkObjects用于存放所有request result model。

@@ -8,7 +8,7 @@
 
 #import "LLAdvListViewController.h"
 #import "LLAdvDetailViewController.h"
-#import "LLAddAdvViewController.h"
+#import "LLEditAdvViewController.h"
 
 #import "LLAdvListCell.h"
 
@@ -62,7 +62,7 @@ UITableViewDelegate>
 - (void)addAction
 {
     __weak LLAdvListViewController *wSelf = self;
-    LLAddAdvViewController *addCtrl = [[LLAddAdvViewController alloc] init];
+    LLEditAdvViewController *addCtrl = [[LLEditAdvViewController alloc] init];
     addCtrl.hidesBottomBarWhenPushed = YES;
     [addCtrl setCompleteBlock:^(LLAdvObject *adv) {
         LLAdvListViewController *sSelf = wSelf;
@@ -155,10 +155,16 @@ UITableViewDelegate>
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     LLAdvObject *adv = [self.dataArray objectAtIndex:indexPath.row];
-    LLAdvDetailViewController *detailCtrl = [[LLAdvDetailViewController alloc] init];
-    detailCtrl.hidesBottomBarWhenPushed = YES;
-    detailCtrl.adv = adv;
-    [self.navigationController pushViewController:detailCtrl animated:YES];
+    LLEditAdvViewController *editCtrl = [[LLEditAdvViewController alloc] init];
+    editCtrl.hidesBottomBarWhenPushed = YES;
+    __weak LLAdvListViewController *wSelf = self;
+    [editCtrl setCompleteBlock:^(LLAdvObject *adv) {
+        LLAdvListViewController *sSelf = wSelf;
+        [sSelf.tableView reloadData];
+    }];
+    editCtrl.type = EditAdvType_Edit;
+    editCtrl.adv = adv;
+    [self.navigationController pushViewController:editCtrl animated:YES];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath

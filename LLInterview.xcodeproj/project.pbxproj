@@ -23,7 +23,7 @@
 		F088E4FA1D07A40B002EC2A6 /* LLAdvObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E4F91D07A40B002EC2A6 /* LLAdvObject.m */; };
 		F088E4FD1D07A9C6002EC2A6 /* LLAdvListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E4FC1D07A9C6002EC2A6 /* LLAdvListCell.m */; };
 		F088E5001D07ABA8002EC2A6 /* LLAdvDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E4FF1D07ABA8002EC2A6 /* LLAdvDetailViewController.m */; };
-		F088E5031D07B502002EC2A6 /* LLAddAdvViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E5021D07B502002EC2A6 /* LLAddAdvViewController.m */; };
+		F088E5031D07B502002EC2A6 /* LLEditAdvViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E5021D07B502002EC2A6 /* LLEditAdvViewController.m */; };
 		F088E5061D07B576002EC2A6 /* LLAddAdvCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E5051D07B576002EC2A6 /* LLAddAdvCell.m */; };
 		F0DEC2711D07BFB900329295 /* LLActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DEC2701D07BFB900329295 /* LLActionSheetView.m */; };
 /* End PBXBuildFile section */
@@ -61,8 +61,8 @@
 		F088E4FC1D07A9C6002EC2A6 /* LLAdvListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAdvListCell.m; sourceTree = "<group>"; };
 		F088E4FE1D07ABA8002EC2A6 /* LLAdvDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAdvDetailViewController.h; sourceTree = "<group>"; };
 		F088E4FF1D07ABA8002EC2A6 /* LLAdvDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAdvDetailViewController.m; sourceTree = "<group>"; };
-		F088E5011D07B502002EC2A6 /* LLAddAdvViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAddAdvViewController.h; sourceTree = "<group>"; };
-		F088E5021D07B502002EC2A6 /* LLAddAdvViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAddAdvViewController.m; sourceTree = "<group>"; };
+		F088E5011D07B502002EC2A6 /* LLEditAdvViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLEditAdvViewController.h; sourceTree = "<group>"; };
+		F088E5021D07B502002EC2A6 /* LLEditAdvViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLEditAdvViewController.m; sourceTree = "<group>"; };
 		F088E5041D07B576002EC2A6 /* LLAddAdvCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLAddAdvCell.h; sourceTree = "<group>"; };
 		F088E5051D07B576002EC2A6 /* LLAddAdvCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLAddAdvCell.m; sourceTree = "<group>"; };
 		F0DEC26F1D07BFB900329295 /* LLActionSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLActionSheetView.h; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 				F088E4E51D07A038002EC2A6 /* LLAdvListViewController.m */,
 				F088E4FE1D07ABA8002EC2A6 /* LLAdvDetailViewController.h */,
 				F088E4FF1D07ABA8002EC2A6 /* LLAdvDetailViewController.m */,
-				F088E5011D07B502002EC2A6 /* LLAddAdvViewController.h */,
-				F088E5021D07B502002EC2A6 /* LLAddAdvViewController.m */,
+				F088E5011D07B502002EC2A6 /* LLEditAdvViewController.h */,
+				F088E5021D07B502002EC2A6 /* LLEditAdvViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -340,7 +340,7 @@
 				F088E4EE1D07A06D002EC2A6 /* LLBaseCell.m in Sources */,
 				F088E4DB1D079F5E002EC2A6 /* LLBaseViewController.m in Sources */,
 				F088E4E21D079FD8002EC2A6 /* LLDBManager.m in Sources */,
-				F088E5031D07B502002EC2A6 /* LLAddAdvViewController.m in Sources */,
+				F088E5031D07B502002EC2A6 /* LLEditAdvViewController.m in Sources */,
 				F088E4DF1D079FBE002EC2A6 /* LLNetworkManager.m in Sources */,
 				F088E4F41D07A191002EC2A6 /* LLNetworkObjects.m in Sources */,
 				F088E4BC1D07568E002EC2A6 /* main.m in Sources */,
@@ -455,6 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LLInterview/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jiahong.LLInterview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -467,6 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LLInterview/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jiahong.LLInterview;
 				PRODUCT_NAME = "$(TARGET_NAME)";

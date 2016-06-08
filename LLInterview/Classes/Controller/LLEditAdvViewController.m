@@ -6,11 +6,11 @@
 //  Copyright © 2016年 jiahong. All rights reserved.
 //
 
-#import "LLAddAdvViewController.h"
+#import "LLEditAdvViewController.h"
 
 #import "LLAddAdvCell.h"
 
-@interface LLAddAdvViewController ()
+@interface LLEditAdvViewController ()
 <UITextFieldDelegate,
 UITableViewDataSource,
 UITableViewDelegate>
@@ -22,7 +22,7 @@ UITableViewDelegate>
 
 @end
 
-@implementation LLAddAdvViewController
+@implementation LLEditAdvViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,10 +48,16 @@ UITableViewDelegate>
     if (!self.titleTextField) {
         self.titleTextField = [[UITextField alloc] init];
         self.titleTextField.delegate = self;
+        if (self.adv&&self.adv.title) {
+            self.titleTextField.text = self.adv.title;
+        }
     }
     if (!self.urlTextField) {
         self.urlTextField = [[UITextField alloc] init];
         self.urlTextField.delegate = self;
+        if (self.adv&&self.adv.url) {
+            self.urlTextField.text = self.adv.url;
+        }
     }
     if (!self.submitButton) {
         self.submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -86,13 +92,18 @@ UITableViewDelegate>
         return;
     }
     
-    [self doSubmitAdvRequest];
+    if (self.type==EditAdvType_New) {
+        [self doAddAdvRequest];
+    }
+    else {
+        [self doUpdateAdvRequest];
+    }
 }
 
 #pragma mark -- Network --
-- (void)doSubmitAdvRequest
+- (void)doAddAdvRequest
 {
-    __weak LLAddAdvViewController *wSelf = self;
+    __weak LLEditAdvViewController *wSelf = self;
     [self showProcessHUD];
     LLAddAdvRequest *request = [[LLAddAdvRequest alloc] init];
     request.title = self.titleTextField.text;
@@ -101,7 +112,7 @@ UITableViewDelegate>
     [[LLNetworkManager createNetworkManager]
      addAdvWith:request
      completeBlock:^(LLNetworkBaseResult *responseObj) {
-         LLAddAdvViewController *sSelf = wSelf;
+         LLEditAdvViewController *sSelf = wSelf;
          [sSelf hideProcessHUD];
          LLAddAdvResult *result = (LLAddAdvResult *)responseObj;
          if (sSelf.completeBlock) {
@@ -111,7 +122,35 @@ UITableViewDelegate>
          [sSelf showToast:@"保存成功"];
     }
      failureBlock:^(NSURLSessionDataTask *operation, NSError *error) {
-         LLAddAdvViewController *sSelf = wSelf;
+         LLEditAdvViewController *sSelf = wSelf;
+         [sSelf hideProcessHUD];
+         [[LLActionSheetView shareInstance] showAlertViewWith:@"" message:@"请求失败"];
+    }];
+}
+
+- (void)doUpdateAdvRequest
+{
+    __weak LLEditAdvViewController *wSelf = self;
+    [self showProcessHUD];
+    LLUpdateAdvRequest *request = [[LLUpdateAdvRequest alloc] init];
+    request._id = self.adv._id;
+    request.title = self.titleTextField.text;
+    request.url = self.urlTextField.text;
+    
+    [[LLNetworkManager createNetworkManager]
+     updateAdvWith:request
+     completeBlock:^(LLNetworkBaseResult *responseObj) {
+         LLEditAdvViewController *sSelf = wSelf;
+         [sSelf hideProcessHUD];
+         [sSelf showToast:@"修改成功"];
+         sSelf.adv.title = sSelf.titleTextField.text;
+         sSelf.adv.url = sSelf.urlTextField.text;
+         if (sSelf.completeBlock) {
+             sSelf.completeBlock(sSelf.adv);
+         }
+    }
+     failureBlock:^(NSURLSessionDataTask *operation, NSError *error) {
+         LLEditAdvViewController *sSelf = wSelf;
          [sSelf hideProcessHUD];
          [[LLActionSheetView shareInstance] showAlertViewWith:@"" message:@"请求失败"];
     }];

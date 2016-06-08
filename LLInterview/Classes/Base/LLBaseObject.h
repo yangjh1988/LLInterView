@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *	BaseObject
+ */
+
 @interface LLBaseObject : NSObject
 
 @end

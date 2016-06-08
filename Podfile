@@ -4,5 +4,4 @@ target 'LLInterview' do
   pod 'AFNetworking'
   pod 'MBProgressHUD'
   pod 'FMDB'
-  pod 'SDWebImage'
 end
