@@ -16,8 +16,9 @@
 <UITableViewDataSource,
 UITableViewDelegate>
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView    *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSIndexPath    *selectedIndexPath;
 
 @end
 
@@ -61,16 +62,17 @@ UITableViewDelegate>
 
 - (void)addAction
 {
-    __weak LLAdvListViewController *wSelf = self;
-    LLEditAdvViewController *addCtrl = [[LLEditAdvViewController alloc] init];
-    addCtrl.hidesBottomBarWhenPushed = YES;
-    [addCtrl setCompleteBlock:^(LLAdvObject *adv) {
-        LLAdvListViewController *sSelf = wSelf;
-        [sSelf.dataArray insertObject:adv atIndex:0];
-        [[LLDBManager shareInstance] insetAdvData:adv];
-        [sSelf.tableView reloadData];
-    }];
-    [self.navigationController pushViewController:addCtrl animated:YES];
+//    __weak LLAdvListViewController *wSelf = self;
+//    LLEditAdvViewController *addCtrl = [[LLEditAdvViewController alloc] init];
+//    addCtrl.hidesBottomBarWhenPushed = YES;
+//    [addCtrl setCompleteBlock:^(LLAdvObject *adv) {
+//        LLAdvListViewController *sSelf = wSelf;
+//        [sSelf.dataArray insertObject:adv atIndex:0];
+//        [[LLDBManager shareInstance] insetAdvData:adv];
+//        [sSelf.tableView reloadData];
+//    }];
+//    [self.navigationController pushViewController:addCtrl animated:YES];
+    [self performSegueWithIdentifier:@"ListToNewAdvView" sender:self];
 }
 
 #pragma mark -- Network --
@@ -154,17 +156,19 @@ UITableViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    LLAdvObject *adv = [self.dataArray objectAtIndex:indexPath.row];
-    LLEditAdvViewController *editCtrl = [[LLEditAdvViewController alloc] init];
-    editCtrl.hidesBottomBarWhenPushed = YES;
-    __weak LLAdvListViewController *wSelf = self;
-    [editCtrl setCompleteBlock:^(LLAdvObject *adv) {
-        LLAdvListViewController *sSelf = wSelf;
-        [sSelf.tableView reloadData];
-    }];
-    editCtrl.type = EditAdvType_Edit;
-    editCtrl.adv = adv;
-    [self.navigationController pushViewController:editCtrl animated:YES];
+    self.selectedIndexPath = indexPath;
+//    LLAdvObject *adv = [self.dataArray objectAtIndex:indexPath.row];
+//    LLEditAdvViewController *editCtrl = [[LLEditAdvViewController alloc] init];
+//    editCtrl.hidesBottomBarWhenPushed = YES;
+//    __weak LLAdvListViewController *wSelf = self;
+//    [editCtrl setCompleteBlock:^(LLAdvObject *adv) {
+//        LLAdvListViewController *sSelf = wSelf;
+//        [sSelf.tableView reloadData];
+//    }];
+//    editCtrl.type = EditAdvType_Edit;
+//    editCtrl.adv = adv;
+//    [self.navigationController pushViewController:editCtrl animated:YES];
+    [self performSegueWithIdentifier:@"ListToEditAdvView" sender:self];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -199,5 +203,33 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ListToEditAdvView"]) {
+        LLAdvObject *adv = [self.dataArray objectAtIndex:self.selectedIndexPath.row];
+        LLEditAdvViewController *editCtrl = segue.destinationViewController;
+        __weak LLAdvListViewController *wSelf = self;
+        [editCtrl setCompleteBlock:^(LLAdvObject *adv) {
+            LLAdvListViewController *sSelf = wSelf;
+            [sSelf.tableView reloadData];
+        }];
+        editCtrl.type = EditAdvType_Edit;
+        editCtrl.adv = adv;
+    }
+    else if ([segue.identifier isEqualToString:@"ListToNewAdvView"]) {
+        __weak LLAdvListViewController *wSelf = self;
+        LLEditAdvViewController *addCtrl = segue.destinationViewController;
+        [addCtrl setCompleteBlock:^(LLAdvObject *adv) {
+            LLAdvListViewController *sSelf = wSelf;
+            [sSelf.dataArray insertObject:adv atIndex:0];
+            [[LLDBManager shareInstance] insetAdvData:adv];
+            [sSelf.tableView reloadData];
+        }];
+    }
+}
+
 
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1FB1E0688A1E9E572B625158 /* libPods-LLInterview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B61ADFCBF407CDF084166098 /* libPods-LLInterview.a */; };
+		F079EC921D0D1C1800FB1BBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F079EC911D0D1C1800FB1BBA /* Main.storyboard */; };
 		F088E4BC1D07568E002EC2A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E4BB1D07568E002EC2A6 /* main.m */; };
 		F088E4BF1D07568E002EC2A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F088E4BE1D07568E002EC2A6 /* AppDelegate.m */; };
 		F088E4C71D07568E002EC2A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F088E4C61D07568E002EC2A6 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		63605E460BD945B204C9CCEB /* Pods-LLInterview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLInterview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LLInterview/Pods-LLInterview.debug.xcconfig"; sourceTree = "<group>"; };
 		A763E43C3DA134CDDA970FA5 /* Pods-LLInterview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLInterview.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLInterview/Pods-LLInterview.release.xcconfig"; sourceTree = "<group>"; };
 		B61ADFCBF407CDF084166098 /* libPods-LLInterview.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LLInterview.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F079EC911D0D1C1800FB1BBA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F088E4B71D07568E002EC2A6 /* LLInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F088E4BB1D07568E002EC2A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F088E4BD1D07568E002EC2A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				F088E4D41D079F5E002EC2A6 /* Classes */,
 				F088E4C61D07568E002EC2A6 /* Assets.xcassets */,
 				F088E4C81D07568E002EC2A6 /* LaunchScreen.storyboard */,
+				F079EC911D0D1C1800FB1BBA /* Main.storyboard */,
 				F088E4CB1D07568E002EC2A6 /* Info.plist */,
 				F088E4BA1D07568E002EC2A6 /* Supporting Files */,
 			);
@@ -274,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F079EC921D0D1C1800FB1BBA /* Main.storyboard in Resources */,
 				F088E4CA1D07568E002EC2A6 /* LaunchScreen.storyboard in Resources */,
 				F088E4C71D07568E002EC2A6 /* Assets.xcassets in Resources */,
 			);
