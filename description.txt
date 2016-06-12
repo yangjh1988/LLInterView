@@ -7,3 +7,6 @@
 5. 基于AFNetworking的网络请求封装，BaseNetworkRequest，BaseNetworkResult用于做统一的处理。
 6. Objects类用于存放所有Model类，统一Import。
 7. NetworkObjects用于存放所有request result model。
+
+update: 2016-06-12
+1. 改用原生storyboard框架处理简单的界面跳转逻辑.
